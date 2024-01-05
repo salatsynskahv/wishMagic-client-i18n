@@ -1,0 +1,14 @@
+{
+  "TITLE": "Вітаю!",
+  "NOT_FOUND": "Не знайдено",
+  "HeroSection": {
+    "title": "Привіт світ!",
+    "banner_title": "ТІЛЬКИ ВЛУЧНІ СЮРПРИЗИ ♥",
+    "banner_text": "Знаходь ідеальні подарунки для близьких\nта допоможи у пошуках їм!",
+    "join": "Приєднатись",
+    "select": "Select a language",
+    "language-one": "english",
+    "language-two": "french",
+    "locale": "{locale, select, fr {French} en {English} other {Unknown}}"
+  }
+}

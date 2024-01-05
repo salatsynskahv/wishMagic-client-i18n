@@ -1,0 +1,19 @@
+{
+  "TITLE": "Welcome!",
+  "NOT_FOUND": "NOT_FOUND",
+  "METADATA": {
+    "TITLE": "Next.js App Router i18n localization",
+    "ABOUT_TITLE": "About us"
+  },
+  "HeroSection": {
+    "title": "Hello world!",
+    "banner_title": "Only fantastic presents",
+    "banner_text": "Easy to create custom wishlists. Share with friends. Track Friends wishlists.",
+    "join": "Join",
+    "select": "Select a language",
+    "language-one": "ukrainian",
+    "language-two": "english",
+    "locale": "{locale, select, ua {Ukraine} en {English} other {Unknown}}"
+  }
+}
+
