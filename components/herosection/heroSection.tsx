@@ -131,8 +131,7 @@ export default function HeroSection() {
                 </Dialog>
             </div>
 
-            <div className="flex bg-cover bg-no-repeat bg-center flex-grow overflow-y-auto"
-                 style={{backgroundImage: "url(https://source.unsplash.com/pink-smoke-hR545CzxZxk)"}}>
+            <div className="flex bg-cover bg-no-repeat bg-center flex-grow overflow-y-auto">
                 <div
                     className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                     aria-hidden="true"
@@ -145,7 +144,7 @@ export default function HeroSection() {
                         }}
                     />
                 </div>
-                <div className="max-w-2xl py-32 sm:py-48 lg:py-56 flex flex-col items-center ">
+                <div className="max-w-2xl pb-11 sm:pt-46 lg:pt-52 flex flex-col items-center ">
                     {/*<div className="hidden sm:mb-8 sm:flex sm:justify-center">*/}
                     {/*    <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">*/}
                     {/*        Announcing our next round of funding.{' '}*/}
@@ -169,9 +168,9 @@ export default function HeroSection() {
 
                     </div>
                     <div className="mt-12 px-5 py-2 bg-white rounded-xl justify-center items-center gap-2 inline-flex">
-                        <a href="#" className="text-xl leading-6 text-red-800 text-[24px] font-medium font-['Inter']">
+                        <Link href={`/${locale}/login`} className="text-xl leading-6 text-red-800 text-[24px] font-medium font-['Inter']">
                             {t('join')}
-                        </a>
+                        </Link>
 
                         {/*<CreateWishlist/>*/}
                         {/*<a href="#" className="text-sm font-semibold leading-6 text-gray-900">*/}

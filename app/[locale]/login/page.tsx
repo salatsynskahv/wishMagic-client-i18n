@@ -44,7 +44,7 @@ function Login(): React.JSX.Element {
 
     return (
         <div className="flex bg-cover bg-no-repeat bg-center justify-center flex-grow overflow-y-auto h-screen"
-              style={{backgroundImage: "url(https://source.unsplash.com/pink-smoke-hR545CzxZxk)"}}
+              // style={{backgroundImage: "url(https://source.unsplash.com/pink-smoke-hR545CzxZxk)"}}
         >
             <div className="flex flex-col h-fit items-center rounded-2xl border shadow-md p-10 mt-20"
                  style={{backgroundColor: "white"}}>

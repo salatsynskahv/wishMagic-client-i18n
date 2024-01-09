@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import {getTranslations} from "next-intl/server";
 import LanguageSwitcher from "@/components/Switcher/LanguageSwitcher";
 import HeroSection from "@/components/herosection/heroSection";
+import PopularWishes from "@/components/wishlist/popularWihes";
 // import { PageType } from '@/types';
 
 export async function generateMetadata({ params: { locale } }: any) {
@@ -16,6 +17,7 @@ const HomePage = ({ params: { locale } }: any) => {
     return (
         <div>
             <HeroSection/>
+            <PopularWishes/>
         </div>);
 };
 
