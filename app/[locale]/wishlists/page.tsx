@@ -1,20 +1,22 @@
 'use client'
-import WishlistComponent from "@/components/wishlist/wishlistComponent";
+import {useTranslations} from "next-intl"
+import {config} from "@/components/Constants";
+import {bearerAuth} from "@/components/services/api/AxiosInstance";
 import Wishlist from "@/types/Wishlist";
-import {useAppSelector} from "@/lib/hooks";
+import WishlistsPageComponent from "@/components/wishlist/wishlistsPageComponent";
+import {useAuth} from "@/components/context/AuthContext";
+import {useState} from "react";
 
-export default function Wishlists() {
 
-    const wishlists = useAppSelector((state: any) => state.wishlist);
-    console.log(wishlists);
+export default function WishlistsPage() {
+    const [wishlists, setWishlists]  = useState<Wishlist[]>([]);
+    // useEffect(() => {
 
-    if(!wishlists || !wishlists.wishlists ||  wishlists.wishlists?.length < 1) {
-        return null;
-    }
-
+    const t = useTranslations("Wishlists");
     return (
-        <div className="mx-6 my-10 grid grid-cols-4 gap-1" id="wishlists-section">
-        {wishlists && wishlists?.wishlists.map((wishlist: Wishlist) => <WishlistComponent wishlist={wishlist}/>)}
-    </div>
+        <>
+            <h1>{t("my_wishlists")} </h1>
+            <WishlistsPageComponent/>
+            </>
     )
 }

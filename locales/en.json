@@ -8,6 +8,7 @@
   "HeroSection": {
     "title": "Hello world!",
     "banner_title": "Only fantastic presents",
+    "to_wishlists": "To Wishlists",
     "banner_text": "Easy to create custom wishlists. Share with friends. Track Friends wishlists.",
     "join": "Join",
     "select": "Select a language",
@@ -16,7 +17,13 @@
     "locale": "{locale, select, ua {Ukraine} en {English} other {Unknown}}"
   },
   "Wishlists": {
+    "my_wishlists": "My Wishlists",
     "popular_wishes": "Popular wishes"
+  },
+  "Login": {
+    "login_title": "Please login",
+    "google": "Continue with Google",
+    "github": "Continue with GitHub"
   }
 }
 

@@ -1,6 +1,5 @@
-import {apiInstance, bearerAuth} from "@/components/services/api/AxiosInstance";
+import {apiInstance, bearerAuth, bearerAuthWithUser} from "@/components/services/api/AxiosInstance";
 import {Wish} from "@/types/Wish";
-import {AxiosResponse} from "axios";
 import Wishlist from "@/types/Wishlist";
 
 export const createWishlistItem = async (wishItem : Wish) => {
@@ -13,17 +12,22 @@ export const createWishlistItem = async (wishItem : Wish) => {
     console.log(result);
 }
 
-export const getUserWishlist = async (): Promise<any> => {
-    try {
-        return  apiInstance.get('/api/wishlist', {
-            headers: {
+export const getUserWishlistFetcher =  () =>
+    apiInstance.get('/api/wishlist', {
+        headers: {
                 'Content-type': 'application/json',
                 'Authorization': bearerAuth()
             }
-        });
-    } catch (error) {
-        // Handle errors here
-        throw error;
-    }
-};
+    }).then(res => res.data);
+
+
+
+export const getUserWishlistByIdFetcher = (url: any) =>
+    apiInstance.get(url, {
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': bearerAuth()
+        }
+    }).then(res => res.data);
+
 

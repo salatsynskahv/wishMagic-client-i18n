@@ -4,6 +4,7 @@
   "HeroSection": {
     "title": "Привіт світ!",
     "banner_title": "ТІЛЬКИ ВЛУЧНІ СЮРПРИЗИ ♥",
+    "to_wishlists": "До Вішлістів",
     "banner_text": "Знаходь ідеальні подарунки для близьких та допоможи у пошуках їм!",
     "join": "Приєднатись",
     "select": "Select a language",
@@ -12,6 +13,12 @@
     "locale": "{locale, select, fr {French} en {English} other {Unknown}}"
   },
   "Wishlists": {
+    "my_wishlists": "Мої вішлісти",
     "popular_wishes": "Популярні бажання"
+  },
+  "Login": {
+    "login_title": "Логін",
+    "google": "Продовжити з Google",
+    "github": "Продовжити з GitHub"
   }
 }

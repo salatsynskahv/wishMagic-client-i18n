@@ -1,11 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
 import wishlistsSlice from "@/components/store/slices/wishlistSlice";
-// import { getUserWishlist} from "@/components/services/api/WishlistService";
+// import { getUserWishlists} from "@/components/services/api/WishlistService";
 //
 //
 // const preloadedState =  async () => {
 //     try {
-//         const result= await getUserWishlist();
+//         const result= await getUserWishlists();
 //         const wishlists = result;
 //         console.log(wishlists);
 //         return { wishlist: { wishlists } };

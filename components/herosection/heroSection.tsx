@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Dialog} from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import Link from 'next/link';
@@ -16,8 +16,10 @@ const navigation = [
 export default function HeroSection() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const {user, getUser, userLogout} = useAuth();
+    console.log(user);
     const locale = useLocale();
     const t = useTranslations('HeroSection');
+
     const logout = () => {
         const user = getUser();
         serviceApi.logout(user).then(
@@ -56,14 +58,14 @@ export default function HeroSection() {
                             <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
                         </button>
                     </div>
-                    <div className="hidden lg:flex lg:gap-x-12">
-                        {navigation.map((item) => (
-                            <a key={item.name} href={item.href}
-                               className="text-white text-xl font-normal font-['Inter']">
-                                {item.name}
-                            </a>
-                        ))}
-                    </div>
+                    {/*<div className="hidden lg:flex lg:gap-x-12">*/}
+                    {/*    {user && navigation.map((item) => (*/}
+                    {/*        <a key={item.name} href={item.href}*/}
+                    {/*           className="text-white text-xl font-normal font-['Inter']">*/}
+                    {/*            {item.name}*/}
+                    {/*        </a>*/}
+                    {/*    ))}*/}
+                    {/*</div>*/}
                     <div className="lg:flex lg:flex-1 lg:justify-end">
                         <LanguageSwitcher/>
                         {user ? (
@@ -132,6 +134,18 @@ export default function HeroSection() {
             </div>
 
             <div className="flex bg-cover bg-no-repeat bg-center flex-grow overflow-y-auto">
+
+                {user &&
+                    <div className="w-full flex flex-col align-middle justify-center">
+                        <div className="mx-5">User: <span className="px-2 text-xl font-normal font-['Inter']">{user.data.email || user.data.preferred_username}</span>
+                        </div>
+                        <div className="mx-5">
+                            Provider: <span className="px-2">{user.data.provider} </span>
+                        </div>
+
+                    </div>
+                }
+
                 <div
                     className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
                     aria-hidden="true"
@@ -156,27 +170,28 @@ export default function HeroSection() {
                     {/*</div>*/}
 
                     <div className="white-gradient ">
-                        <div className="ml-36 py-12">
-                            <h1 className="top-0 left-0 [font-family:'Inter-Bold',Helvetica] font-bold text-[#404958] text-6xl tracking-[0] leading-[normal]">
-                                {t('banner_title')}
-                            </h1>
-                            <p className="text-black text-[29px] font-normal font-['Inter']">
-                                {t('banner_text')}
-                            </p>
-                        </div>
+                        {/*<div className="ml-36 py-12">*/}
+                        {/*    <h1 className="top-0 left-0 [font-family:'Inter-Bold',Helvetica] font-bold text-[#404958] text-6xl tracking-[0] leading-[normal]">*/}
+                        {/*        {t('banner_title')}*/}
+                        {/*    </h1>*/}
+                        {/*    <p className="text-black text-[29px] font-normal font-['Inter']">*/}
+                        {/*        {t('banner_text')}*/}
+                        {/*    </p>*/}
+                        {/*</div>*/}
 
 
                     </div>
-                    <div className="mt-12 px-5 py-2 bg-white rounded-xl justify-center items-center gap-2 inline-flex">
-                        <Link href={`/${locale}/login`} className="text-xl leading-6 text-red-800 text-[24px] font-medium font-['Inter']">
-                            {t('join')}
-                        </Link>
-
-                        {/*<CreateWishlist/>*/}
-                        {/*<a href="#" className="text-sm font-semibold leading-6 text-gray-900">*/}
-                        {/*    Find friends wishlists <span aria-hidden="true">→</span>*/}
-                        {/*</a>*/}
-                    </div>
+                    {/*<div className="mt-12 px-5 py-2 bg-white rounded-xl justify-center items-center gap-2 inline-flex">*/}
+                    {/*    {user ?*/}
+                    {/*        <Link href={`/${locale}/wishlists`} className="text-xl leading-6 text-red-800 text-[24px] font-medium font-['Inter']">*/}
+                    {/*            {t('to_wishlists')}*/}
+                    {/*        </Link>*/}
+                    {/*        :*/}
+                    {/*    <Link href={`/${locale}/login`} className="text-xl leading-6 text-red-800 text-[24px] font-medium font-['Inter']">*/}
+                    {/*        {t('join')}*/}
+                    {/*    </Link>*/}
+                    {/*    }*/}
+                    {/*</div>*/}
                 </div>
                 {/*<div*/}
                 {/*    className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"*/}

@@ -47,10 +47,11 @@ function AuthProvider({children}) {
     }
 
     const userLogout = () => {
+        //send Request to server
         if (typeof window !== 'undefined') {
             localStorage.removeItem('user')
-            setUser(null)
         }
+        setUser(null);
     }
 
     const contextValue = {

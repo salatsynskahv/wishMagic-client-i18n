@@ -13,7 +13,7 @@ function OAuth2Redirect(): React.ReactNode {
 
     useEffect(() => {
         const accessToken = extractUrlParameter('token');
-        console.log(accessToken);
+        // console.log(accessToken);
         if (accessToken) {
             handleLogin(accessToken)
             const redirect = '/'

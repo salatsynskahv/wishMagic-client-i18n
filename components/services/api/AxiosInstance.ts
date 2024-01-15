@@ -13,9 +13,9 @@ apiInstance.interceptors.request.use(function (config : any) {
     if (config.headers.Authorization) {
         const token = config.headers.Authorization.split(' ')[1]
         const data = parseJwt(token)
-        // if (Date.now() > data.exp * 1000) {
-        //     window.location.href = "/login"
-        // }
+        if (Date.now() > data.exp * 1000) {
+            window.location.href = "/login"
+        }
     }
     return config
 }, function (error: any) {
@@ -26,5 +26,10 @@ export function bearerAuth() {
     let user: any;
     // @ts-ignore
     user = JSON.parse(localStorage.getItem('user'));
+    return `Bearer ${user.accessToken}`
+}
+
+export function bearerAuthWithUser(user: any) {
+    // @ts-ignore
     return `Bearer ${user.accessToken}`
 }

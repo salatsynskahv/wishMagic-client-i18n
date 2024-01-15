@@ -1,6 +1,8 @@
 import {Wish} from "@/types/Wish";
 
-export const WishItemCard = ({ wishItem, navigateWish }: { wishItem: Wish, navigateWish: any }) => {
+
+
+export const WishItemCard = ({ wishItem, navigateWish }: { wishItem: Wish , navigateWish: any  }) => {
     return (
         <div onClick={navigateWish} className="p-4 bg-white rounded-xl flex-col justify-center border-2 border-b-neutral-100 items-center gap-14 inline-flex">
             <div className="w-[16rem] h-[16rem] bg-zinc-300 rounded-lg">

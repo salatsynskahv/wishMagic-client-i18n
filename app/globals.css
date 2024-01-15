@@ -41,3 +41,43 @@ div.scroll::-webkit-scrollbar {
   width: 0;
 }
 
+
+.outerWrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  height: 90vh;
+  /*width: 30vw;*/
+  /*background-color: beige;*/
+  width: 30%;
+}
+
+.layer0{
+  /*background: yellowgreen;*/
+  position: relative;
+  /*left: -20px;*/
+  /*top: 20px;*/
+  z-index: 1;
+}
+
+.layer1{
+  /*background: steelblue;*/
+  position: relative;
+  left: -250px;
+  top: 50px;
+  z-index: 2;
+}
+
+.layer2{
+  position: relative;
+  /*background: rezd;*/
+  left: -500px;
+  top: 100px;
+  z-index: 3;
+}
+
+#outerWrap > div {
+  padding: 20px;
+  font-size: 4vw;
+  color: white;
+}

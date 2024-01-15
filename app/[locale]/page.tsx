@@ -12,12 +12,12 @@ export async function generateMetadata({ params: { locale } }: any) {
 }
 
 const HomePage = ({ params: { locale } }: any) => {
-    const t = useTranslations();
 
     return (
         <div>
             <HeroSection/>
-            <PopularWishes/>
+
+            {/*<PopularWishes/>*/}
         </div>);
 };
 

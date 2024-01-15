@@ -1,3 +1,4 @@
+'use client'
 import Wishlist from "@/types/Wishlist";
 import {WishItemCard} from "@/components/wishlist/wishItemCard";
 import {useRouter} from "next/navigation";
@@ -8,6 +9,7 @@ const WishlistComponent = ({wishlist}: {
     const route = useRouter();
     return (
         <>
+            <p>{wishlist.title}</p>
             {
                 wishlist.wishes && wishlist.wishes.map(
                     wish =>
