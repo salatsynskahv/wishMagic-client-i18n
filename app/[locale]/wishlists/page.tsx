@@ -14,9 +14,9 @@ export default function WishlistsPage() {
 
     const t = useTranslations("Wishlists");
     return (
-        <>
-            <h1>{t("my_wishlists")} </h1>
+        <div className="flex flex-col gap-5 my-10">
+            <h1 className="text-4xl text-center">{t("my_wishlists")} </h1>
             <WishlistsPageComponent/>
-            </>
+            </div>
     )
 }

@@ -1,26 +1,26 @@
 'use client';
 import React, {useState} from "react";
 import ModalCreateWishlist from "./modalCreateWishlist";
+import {FiPlusCircle} from "react-icons/fi";
+import {useTranslations} from "next-intl";
 
 const CreateWishlist = () => {
     const [showModal, setShowModal] = useState(false);
-
+    const t = useTranslations('Wishlists');
     return (
-        <div>
-            <div className="flex items-center justify-center">
-                <button
-                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={() => setShowModal(prevState => !prevState)}
-                >
-                    Create Wish
-                </button>
-
-                <ModalCreateWishlist showModal={showModal} setShowModal={setShowModal}>
-                </ModalCreateWishlist>
-            </div>
-
-        </div>
+        <>
+                <div className="max-w-[20%] w-[16rem] p-4 bg-white rounded-xl flex-col gap-1 border-2 border-b-neutral-100 flex justify-center items-center"
+                     onClick={() => setShowModal(prevState => !prevState)}>
+                    <h1 className="text-xl">{t('create')}</h1>
+                    <FiPlusCircle />
+                </div>
+    <ModalCreateWishlist showModal={showModal} setShowModal={setShowModal}>
+    </ModalCreateWishlist>
+    </>
     )
+
+
+
 }
 
 export default CreateWishlist;

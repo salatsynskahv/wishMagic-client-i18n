@@ -4,7 +4,7 @@ import {getUserWishlistByIdFetcher, getUserWishlistFetcher} from "@/components/s
 import Wishlist from "@/types/Wishlist";
 import {WishItemCard} from "@/components/wishlist/wishItemCard";
 import {useAuth} from "@/components/context/AuthContext";
-import {CreateWishlistCard} from "@/components/wishlist/createWishlistCard";
+import CreateWishlist from "@/components/wishlist/createWishlist";
 
 export default  function Wishlists({params}: {params: {slug: string}}) {
     console.log(params.slug);
@@ -15,11 +15,13 @@ export default  function Wishlists({params}: {params: {slug: string}}) {
     const {data, error, isLoading} = useSWR<Wishlist>(`/api/wishlist/${id}`, getUserWishlistByIdFetcher);
 
     return (
-        <>
-            <h1>{data?.title}</h1>
-            <CreateWishlistCard/>
+        <div className="w-full justify-center items-center flex flex-col mx-3 my-10 gap-10">
+            <h1 className="text-4xl">{data?.title}</h1>
+            <div className="w-full flex gap-4">
+                <CreateWishlist/>
+                {data?.wishes.map(wish => <WishItemCard wishItem={wish} navigateWish={() => {}}/>)}
+            </div>
 
-            {data?.wishes.map(wish => <WishItemCard wishItem={wish} navigateWish={() => {}}/>)}
-        </>
+        </div>
     )
 }

@@ -16,8 +16,7 @@ const HomePage = ({ params: { locale } }: any) => {
     return (
         <div>
             <HeroSection/>
-
-            {/*<PopularWishes/>*/}
+            <PopularWishes/>
         </div>);
 };
 

@@ -46,10 +46,9 @@ div.scroll::-webkit-scrollbar {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  height: 90vh;
-  /*width: 30vw;*/
+  width: 22rem;
+  height: 30rem;
   /*background-color: beige;*/
-  width: 30%;
 }
 
 .layer0{
@@ -63,16 +62,16 @@ div.scroll::-webkit-scrollbar {
 .layer1{
   /*background: steelblue;*/
   position: relative;
-  left: -250px;
-  top: 50px;
+  left: -12rem;
+  top: 2rem;
   z-index: 2;
 }
 
 .layer2{
   position: relative;
   /*background: rezd;*/
-  left: -500px;
-  top: 100px;
+  left: -24rem;
+  top: 5rem;
   z-index: 3;
 }
 

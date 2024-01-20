@@ -18,7 +18,8 @@
   },
   "Wishlists": {
     "my_wishlists": "My Wishlists",
-    "popular_wishes": "Popular wishes"
+    "popular_wishes": "Popular wishes",
+    "create": "Create"
   },
   "Login": {
     "login_title": "Please login",

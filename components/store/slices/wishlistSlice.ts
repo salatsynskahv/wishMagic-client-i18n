@@ -1,15 +1,11 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-
-export const fetchWishlists = createAsyncThunk('wishlists/fetchWishlists', async () => {
-    const response = await client.get('/wishlists')
-    return response.wishlists
-})
+import {createSlice} from '@reduxjs/toolkit'
+import Wishlist from "@/types/Wishlist";
 
 
 export const wishlistsSlice = createSlice({
     name: 'wishlists',
     initialState: {
-        wishlists: [],
+        wishlists: [] as Wishlist[],
     },
     reducers: {
         init: (state, action) => {

@@ -68,8 +68,8 @@ function Login(): React.JSX.Element {
                     {/*</Link>*/}
                     <Link
                         href={getSocialLoginUrl('github')}
-                        className="relative text-center rounded-full px-3 py-3 text-sm leading-6  ring-1 ring-gray-900/10 hover:ring-gray-900/20"> Продовжити
-                        з Github
+                        className="relative text-center rounded-full px-3 py-3 text-sm leading-6  ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        {t('github')}
                     </Link>
                 </div>
                 <div className="border-b border-gray-500 my-8 w-1/2"></div>

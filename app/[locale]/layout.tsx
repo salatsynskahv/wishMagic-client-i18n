@@ -2,6 +2,7 @@ import { AuthProvider } from '@/components/context/AuthContext';
 import {NextIntlClientProvider, useMessages} from 'next-intl';
 import StoreProvider from "@/components/context/StoreProvider";
 import '../globals.css'
+import Header from "@/components/header/header";
 // import { PageParamsType } from '@/types';
 
 const RootLayout = ({
@@ -22,7 +23,8 @@ const RootLayout = ({
                     locale={locale}
                     messages={messages}
                 >
-                    {children}
+                    <Header/>
+                        {children}
                 </NextIntlClientProvider>
             </StoreProvider>
         </AuthProvider>
