@@ -9,8 +9,6 @@ import {useState} from "react";
 
 
 export default function WishlistsPage() {
-    const [wishlists, setWishlists]  = useState<Wishlist[]>([]);
-    // useEffect(() => {
 
     const t = useTranslations("Wishlists");
     return (
