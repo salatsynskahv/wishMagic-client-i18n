@@ -13,8 +13,7 @@ const WishlistComponent = ({wishlist}: {
             {
                 wishlist.wishes && wishlist.wishes.map(
                     wish =>
-                        <WishItemCard navigateWish={() => { route.push(`wishlists/wish/${wishlist.id}/${wish.id}`)
-                        }} wishItem={wish}></WishItemCard>
+                        <WishItemCard wishItem={wish} selectWish={()=> {}}></WishItemCard>
                 )
             }
         </>

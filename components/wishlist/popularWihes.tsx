@@ -9,6 +9,7 @@ import Wishlist from "@/types/Wishlist";
 import useSWR from "swr";
 import {getUserWishlistFetcher} from "@/components/services/api/WishlistService";
 import {useAuth} from "@/components/context/AuthContext";
+import {WishItemCardDemo} from "@/components/wishlist/card/wishlist/wishlistCardDemo";
 
 function PopularWishes() {
     const t = useTranslations('Wishlists');
@@ -24,8 +25,7 @@ function PopularWishes() {
             <div className="flex gap-5  scroll">
                 {!!data && data.map(
                     wishlist => wishlist.wishes.map(item =>
-                        <WishItemCard wishItem={item} navigateWish={() => {
-                        }}/>))
+                        <WishItemCardDemo wishItem={item}/>))
                 }
             </div>
 
