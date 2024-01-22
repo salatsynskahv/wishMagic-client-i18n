@@ -1,6 +1,6 @@
 'use client';
 import {useTranslations} from "next-intl";
-import {WishItemCard} from "@/components/wishlist/wishItemCard";
+import {WishItemCard} from "@/components/wishlist/card/wish/wishItemCard";
 import {defaultWishes} from "@/types/Wish";
 import {useAppSelector} from "@/lib/hooks";
 import wishlist from "@/types/Wishlist";

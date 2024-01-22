@@ -2,9 +2,10 @@
 import useSWR from "swr";
 import {getUserWishlistByIdFetcher, getUserWishlistFetcher} from "@/components/services/api/WishlistService";
 import Wishlist from "@/types/Wishlist";
-import {WishItemCard} from "@/components/wishlist/wishItemCard";
+import {WishItemCard} from "@/components/wishlist/card/wish/wishItemCard";
 import {useAuth} from "@/components/context/AuthContext";
 import CreateWishlist from "@/components/wishlist/createWishlist";
+import {useAppSelector} from "@/lib/hooks";
 
 export default  function Wishlists({params}: {params: {slug: string}}) {
     console.log(params.slug);

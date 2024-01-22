@@ -1,6 +1,6 @@
 'use client'
 import Wishlist from "@/types/Wishlist";
-import {WishItemCard} from "@/components/wishlist/wishItemCard";
+import {WishItemCard} from "@/components/wishlist/card/wish/wishItemCard";
 import {useRouter} from "next/navigation";
 
 const WishlistComponent = ({wishlist}: {
