@@ -1,6 +1,10 @@
 {
   "TITLE": "Вітаю!",
   "NOT_FOUND": "Не знайдено",
+  "Header" : {
+    "friends": "Друзі",
+    "wishlists" : "Вішлісти"
+  },
   "HeroSection": {
     "title": "Привіт світ!",
     "banner_title": "ТІЛЬКИ ВЛУЧНІ СЮРПРИЗИ ♥",
@@ -13,9 +17,19 @@
     "locale": "{locale, select, fr {French} en {English} other {Unknown}}"
   },
   "Wishlists": {
+    "add": "Add",
     "my_wishlists": "Мої вішлісти",
+    "new_wishlist": "Новий вішліст",
     "popular_wishes": "Популярні бажання",
-    "create": "Створити"
+    "price": "Ціна",
+    "insert_link": "Вставте посилання на сайт",
+    "create": "Створити",
+    "edit": "Редагувати",
+    "edit_wish": "Редагувати бажання",
+    "update_wish": "Оновити данні",
+    "wish_name": "Назва бажання",
+    "close": "Відмінити",
+    "comment": "Коментар"
   },
   "Login": {
     "login_title": "Логін",

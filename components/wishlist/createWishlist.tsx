@@ -1,10 +1,10 @@
 'use client';
 import React, {useState} from "react";
-import ModalCreateWishlist from "./modalCreateWishlist";
+import ModalCreateWish from "./modals/modalCreateWish";
 import {FiPlusCircle} from "react-icons/fi";
 import {useTranslations} from "next-intl";
 
-const CreateWishlist = () => {
+const CreateWish = () => {
     const [showModal, setShowModal] = useState(false);
     const t = useTranslations('Wishlists');
     return (
@@ -14,13 +14,10 @@ const CreateWishlist = () => {
                     <h1 className="text-xl">{t('create')}</h1>
                     <FiPlusCircle />
                 </div>
-    <ModalCreateWishlist showModal={showModal} setShowModal={setShowModal}>
-    </ModalCreateWishlist>
+    <ModalCreateWish showModal={showModal} setShowModal={setShowModal}>
+    </ModalCreateWish>
     </>
     )
-
-
-
 }
 
-export default CreateWishlist;
+export default CreateWish;

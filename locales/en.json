@@ -5,6 +5,10 @@
     "TITLE": "Next.js App Router i18n localization",
     "ABOUT_TITLE": "About us"
   },
+  "Header" : {
+    "friends": "Friends",
+    "wishlists" : "Wishlists"
+  },
   "HeroSection": {
     "title": "Hello world!",
     "banner_title": "Only fantastic presents",
@@ -17,9 +21,19 @@
     "locale": "{locale, select, ua {Ukraine} en {English} other {Unknown}}"
   },
   "Wishlists": {
+    "add": "Add",
+    "new_wishlist": "New Wishlist",
     "my_wishlists": "My Wishlists",
+    "edit": "Edit",
+    "edit_wish": "Edit Wish",
+    "update_wish": "Update Wish",
+    "insert_link": "Insert link on website",
+    "wish_name": "Wish name",
+    "close": "Close",
+    "comment": "Comment",
+    "create": "Create",
     "popular_wishes": "Popular wishes",
-    "create": "Create"
+    "price": "Price"
   },
   "Login": {
     "login_title": "Please login",

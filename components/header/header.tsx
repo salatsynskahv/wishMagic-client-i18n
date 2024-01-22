@@ -1,23 +1,20 @@
 'use client';
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import {useAuth} from "@/components/context/AuthContext";
-import {useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import {serviceApi} from "@/components/services/api/ServiceApi";
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import LanguageSwitcher from "@/components/Switcher/LanguageSwitcher";
 import Link from "next/link";
 import {Dialog} from "@headlessui/react";
 
-const navigation = [
-    {name: 'Wishlists', href: '/wishlists'},
-    {name: 'Friends', href: '#'},
-]
+
 
 const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const {user, getUser, userLogout} = useAuth();
-    console.log(user);
     const locale = useLocale();
+    const t = useTranslations('Header');
 
     const logout = () => {
         const user = getUser();
@@ -32,6 +29,11 @@ const Header = () => {
             }
         );
     }
+
+    const navigation = useMemo(() => [
+        { name: t('wishlists'), href: '/wishlists' },
+        { name: t('friends'), href: '#' },
+    ], []);
 
 
     return (

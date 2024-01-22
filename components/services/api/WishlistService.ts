@@ -2,8 +2,18 @@ import {apiInstance, bearerAuth, bearerAuthWithUser} from "@/components/services
 import {Wish} from "@/types/Wish";
 import Wishlist from "@/types/Wishlist";
 
-export const createWishlistItem = async (wishItem : Wish) => {
+export const createWishRequest = async (wishItem : Wish) => {
     const result = await apiInstance.post('/api/wishItem', wishItem,{
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': bearerAuth()
+        }
+    });
+    console.log(result);
+}
+
+export const updateWishRequest = async (wishItem : Wish) => {
+    const result = await apiInstance.patch('/api/wishItem', wishItem,{
         headers: {
             'Content-type': 'application/json',
             'Authorization': bearerAuth()
