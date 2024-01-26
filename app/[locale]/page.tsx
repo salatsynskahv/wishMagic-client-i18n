@@ -1,7 +1,5 @@
-import { useTranslations } from 'next-intl';
-import { Metadata } from 'next';
 import {getTranslations} from "next-intl/server";
-import LanguageSwitcher from "@/components/Switcher/LanguageSwitcher";
+import LanguageSwitcher from "@/components/lang-switcher/LanguageSwitcher";
 import HeroSection from "@/components/herosection/heroSection";
 import PopularWishes from "@/components/wishlist/popularWihes";
 // import { PageType } from '@/types';

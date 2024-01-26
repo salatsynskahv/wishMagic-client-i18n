@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {useAuth} from "@/components/context/AuthContext";
 import {serviceApi} from "@/components/services/api/ServiceApi";
 import {useLocale, useTranslations} from "next-intl";
-import LanguageSwitcher from "@/components/Switcher/LanguageSwitcher";
+import LanguageSwitcher from "@/components/lang-switcher/LanguageSwitcher";
 
 
 

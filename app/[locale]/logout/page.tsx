@@ -13,11 +13,9 @@ export default function Logout(): React.JSX.Element {
         const user = getUser();
         serviceApi.logout(user).then(
             (result) => {
-                console.log(result);
             }
         ).catch(
             (error) => {
-                console.log(error)
             }
         );
         // router.push("/");

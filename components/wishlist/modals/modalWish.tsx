@@ -1,12 +1,11 @@
 'use client'
-import React, {useEffect, useReducer, useState} from "react";
+import React from "react";
 import {serviceApi} from "@/components/services/api/ServiceApi";
 import {Wish} from "@/types/Wish";
 import Wishlist from "@/types/Wishlist";
-import {updateWishRequest} from "@/components/services/api/WishlistService";
-import {useAppDispatch, useAppSelector} from "@/lib/hooks";
-import {addWish} from "@/components/store/slices/wishlistSlice";
+import {useAppSelector} from "@/lib/hooks";
 import {useTranslations} from "next-intl";
+import WiButton from "@/components/elements/button";
 
 type ModalWishProps = {
     data: Wish,
@@ -81,10 +80,9 @@ export default function ModalWish({data, dispatchData, setShowModal, handleSelec
                             />
                             <p className="my-6 mx-3">Скопіюйте лінк на товар або бажання і ми спробуємо
                                 заповнити всі поля автоматично</p>
-                            <button className="bg-green-200 rounded-3xl py-3 px-6"
-                                    onClick={submitLink}>
+                            <WiButton onClickHandler={submitLink}>
                                 {t("add")}
-                            </button>
+                            </WiButton>
                         </div>
 
                         {

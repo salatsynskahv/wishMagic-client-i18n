@@ -18,10 +18,10 @@ export const WishItemCardDemo = ({ wishItem }: { wishItem: Wish   }) => {
             <div className="justify-start items-center gap-[5px] flex flex-col">
                 <div className="flex w-full justify-between h-[75px]">
                     <div className="text-black text-[16px] font-bold font-['Inter']">{formatName(wishItem.name)}</div>
-                    <div className="text-black text-xl font-normal font-['Inter']">
-                        <span>{wishItem.likes}</span>
-                       <FiHeart className="ml-0.5 inline-block" size="20px"/>
-                    </div>
+                    {/*<div className="text-black text-xl font-normal font-['Inter']">*/}
+                    {/*    <span>{wishItem.likesCount}</span>*/}
+                    {/*   <FiHeart className="ml-0.5 inline-block" size="20px"/>*/}
+                    {/*</div>*/}
                 </div>
                 <div className="justify-start w-full flex">
                     <div className="text-black text-lg font-normal font-['Inter']">{wishItem.price || "No price"}</div>

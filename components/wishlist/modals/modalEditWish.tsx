@@ -44,7 +44,6 @@ export default function ModalEditWish({showModal, setShowModal, wish, wishlistId
         console.log(wishRequest);
         updateWishRequest(wishRequest).then(
             (result) => {
-                console.log(result);
                 reduxDispatch(addWish({wishlistId: wishlistId, wish: data}));
                 setShowModal(null);
             }

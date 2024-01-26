@@ -4,7 +4,7 @@ import {useAuth} from "@/components/context/AuthContext";
 import {useLocale, useTranslations} from "next-intl";
 import {serviceApi} from "@/components/services/api/ServiceApi";
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
-import LanguageSwitcher from "@/components/Switcher/LanguageSwitcher";
+import LanguageSwitcher from "@/components/lang-switcher/LanguageSwitcher";
 import Link from "next/link";
 import {Dialog} from "@headlessui/react";
 

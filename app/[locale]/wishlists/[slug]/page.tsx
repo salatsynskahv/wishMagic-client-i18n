@@ -23,7 +23,7 @@ export default  function Wishlists({params}: {params: {slug: string}}) {
             <h1 className="text-4xl">{data?.title}</h1>
             <div className="w-full flex gap-4 flex-wrap ">
                 <CreateWish/>
-                {data?.wishes.map(wish => <WishItemCard wishItem={wish} selectWish={setEditWish}/>)}
+                {data?.wishes.map(wish => <WishItemCard wishItem={wish}  selectWish={setEditWish}/>)}
             </div>
             <ModalEditWish showModal={!!editWish} setShowModal={setEditWish} wish={editWish} wishlistId={id}/>
         </div>
