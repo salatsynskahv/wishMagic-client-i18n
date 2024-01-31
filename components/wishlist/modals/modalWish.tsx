@@ -16,7 +16,7 @@ import wishlist from "@/types/Wishlist";
 
 type ModalWishProps = {
     wishInit: Wish | null,
-    wishlistId: string,
+    wishlistId: number,
     submitLabel: string
     modalTitle: string
     setShowModal: any,

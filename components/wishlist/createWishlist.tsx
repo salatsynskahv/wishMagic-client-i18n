@@ -4,7 +4,7 @@ import ModalCreateWish from "./modals/modalCreateWish";
 import {FiPlusCircle} from "react-icons/fi";
 import {useTranslations} from "next-intl";
 
-const CreateWish = ({wishlistId}: { wishlistId: string }) => {
+const CreateWish = ({wishlistId}: { wishlistId: number }) => {
     const [showModal, setShowModal] = useState(false);
     const t = useTranslations('Wishlists');
     return (

@@ -57,10 +57,10 @@ const Header = () => {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     {user && navigation.map((item) => (
-                        <a key={item.name} href={item.href}
+                        <Link key={item.name} href={item.href}
                            className="text-white text-xl font-normal">
                             {item.name}
-                        </a>
+                        </Link>
                     ))}
                 </div>
                 <div className="lg:flex lg:flex-1 lg:justify-end">

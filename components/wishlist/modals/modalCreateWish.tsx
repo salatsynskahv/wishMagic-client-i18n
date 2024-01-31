@@ -10,7 +10,7 @@ import ModalWish from "@/components/wishlist/modals/modalWish";
 export default function ModalCreateWish({showModal, setShowModal, wishlistId}: {
     showModal: boolean,
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>
-    wishlistId: string
+    wishlistId: number
 }) {
 
     const reduxDispatch = useAppDispatch();
