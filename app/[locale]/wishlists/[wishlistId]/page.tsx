@@ -14,7 +14,7 @@ import {init} from "@/components/store/slices/wishlistSlice";
 
 export default function Wishlists({params}: { params: { wishlistId: string } }) {
 
-    const id = params.wishlistId;
+    const id = Number(params.wishlistId);
     const [editWish, setEditWish] = useState<Wish | null>(null);
     const [wishlist, setWishlist] = useState<Wishlist | undefined>();
     const wishLists: Wishlist[] = useAppSelector((state) => state.wishlist.wishlists);

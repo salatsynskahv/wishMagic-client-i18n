@@ -4,9 +4,9 @@ type Wishlist = {
     id: number;
     userId: number;
     title: string;
-    createdAt: string;
-    isPrivate: boolean;
-    status: string;
+    createdAt?: string;
+    isPrivate?: boolean;
+    status?: string;
     wishes: Wish[];
 };
 
