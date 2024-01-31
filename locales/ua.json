@@ -29,7 +29,10 @@
     "update_wish": "Оновити данні",
     "wish_name": "Назва бажання",
     "close": "Відмінити",
-    "comment": "Коментар"
+    "comment": "Коментар",
+    "create_wishlist": "Створити Вішліст",
+    "create_wish": "Створити Бажання",
+    "wishlist_name": "Назва Вішліста"
   },
   "Login": {
     "login_title": "Логін",

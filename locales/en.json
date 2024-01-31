@@ -2,7 +2,7 @@
   "TITLE": "Welcome!",
   "NOT_FOUND": "NOT_FOUND",
   "METADATA": {
-    "TITLE": "Next.js App Router i18n localization",
+    "TITLE": "Wishlist",
     "ABOUT_TITLE": "About us"
   },
   "Header" : {
@@ -32,8 +32,11 @@
     "close": "Close",
     "comment": "Comment",
     "create": "Create",
+    "create_wishlist": "Create Wishlist",
+    "create_wish": "Create Wish",
     "popular_wishes": "Popular wishes",
-    "price": "Price"
+    "price": "Price",
+    "wishlist_name": "Wishlist Name"
   },
   "Login": {
     "login_title": "Please login",
