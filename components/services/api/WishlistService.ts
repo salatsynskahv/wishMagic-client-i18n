@@ -11,7 +11,7 @@ export const createWishRequest = (wishItem : Wish) => {
     });
 }
 
-export const createWishlistRequest = async (wishlist : Wishlist) => {
+export const createWishlistRequest = async (wishlist : any) => {
     return await apiInstance.post('/api/wishlist', wishlist, {
         headers: {
             'Content-type': 'application/json',

@@ -9,24 +9,23 @@ import {addWish} from "@/components/store/slices/wishlistSlice";
 import {useTranslations} from "next-intl";
 import ModalWish from "@/components/wishlist/modals/modalWish";
 
-export default function ModalEditWish({showModal, setShowModal, wish, wishlistId}:
-{showModal: boolean, setShowModal: React.Dispatch<React.SetStateAction<Wish | null>>, wish: Wish | null, wishlistId: string }) {
 
-
+type ModalEditWishParams = {
+    showModal: boolean,
+    setShowModal: React.Dispatch<React.SetStateAction<Wish | null>>,
+    wish: Wish | null,
+    wishlistId: number
+};
+export default function ModalEditWish({showModal, setShowModal, wish, wishlistId}:  ModalEditWishParams) {
     const reduxDispatch = useAppDispatch();
-
     function updateWish(wish: Wish) {
         updateWishRequest(wish).then(
             (result) => {
                 reduxDispatch(addWish({wishlistId: wish.wishlistId, wish: wish}));
                 setShowModal(null);
             }
-        ).catch((error) => {
-
-        })
+        ).catch((error) => {})
     }
-
-
 
     return (
         <>

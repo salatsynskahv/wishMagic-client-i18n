@@ -15,10 +15,9 @@ function ModalCreateWishlist({showModal, setModalShow}: { showModal: boolean, se
 
     const [wishlistTitle, setWishlistTitle] = useState<string>("");
     const createWishlistHandler = () => {
-        const wishlistDto: Wishlist = {title: wishlistTitle};
+        const wishlistDto = {title: wishlistTitle}
         createWishlistRequest(wishlistDto).then(
             res => {
-                const newWishlist = res.data;
                 reduxDispatch(add({wishlist: res.data}));
                 setWishlistTitle("");
                 setModalShow(false);
