@@ -9,27 +9,28 @@ export const wishlistsSlice = createSlice({
     },
     reducers: {
         init: (state, action) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes.
-            // Also, no return statement is required from these functions.
             state.wishlists = action.payload.wishlists
         },
         add: (state, action) => {
-            state.wishlists.push(action.payload.wishlist);
+            state.wishlists = [...state.wishlists, action.payload.wishlist];
         },
         addWish: (state, action) => {
             const {wishlistId, wish} = action.payload;
-            const wishlist = state.wishlists.find(w => w.id === wishlistId);
-
-            if (wishlist) {
-                if (!wishlist.wishes) {
-                    wishlist.wishes = [];
+            state.wishlists = state.wishlists.map((wishlist) => {
+                if (wishlist.id != wishlistId) return wishlist;
+                let newWishes;
+                if (wishlist.wishes) {
+                    newWishes = [...wishlist.wishes, wish]
+                } else {
+                    newWishes = [wish];
                 }
-                wishlist.wishes.push(wish);
-            }
+                return {
+                    ...wishlist,
+                    wishes: newWishes,
+                }
+            })
         },
+
         remove: (state, action) => {
             state.wishlists = state.wishlists.filter(wishlist => wishlist.id !== action.payload.id);
         },

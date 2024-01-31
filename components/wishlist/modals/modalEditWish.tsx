@@ -12,39 +12,13 @@ import ModalWish from "@/components/wishlist/modals/modalWish";
 export default function ModalEditWish({showModal, setShowModal, wish, wishlistId}:
 {showModal: boolean, setShowModal: React.Dispatch<React.SetStateAction<Wish | null>>, wish: Wish | null, wishlistId: string }) {
 
-    const t = useTranslations('Wishlists');
 
-    const [selectedWishlist, setSelectedWishlist] = useState<Wishlist | null>(null);
     const reduxDispatch = useAppDispatch();
-    const dataReducer = (state: any, action: any) => {
-        if (action.type === "init") {
-            return {...action.payload};
-        }
-        if (action.type === "input") {
-            return {...state, [action.payload.name]: action.payload.value}
-        }
-    }
 
-    const [data, dispatchData] = useReducer(dataReducer, {});
-
-    useEffect(() => {
-        dispatchData({
-            type : "init",
-            payload: {...wish}
-        })
-    }, [wish]);
-    // console.log(wish);
-    console.log(data);
-
-
-
-    function updateWish() {
-        console.log(data);
-        const wishRequest = {wishlistId: selectedWishlist?.id || wishlistId, ...data};
-        console.log(wishRequest);
-        updateWishRequest(wishRequest).then(
+    function updateWish(wish: Wish) {
+        updateWishRequest(wish).then(
             (result) => {
-                reduxDispatch(addWish({wishlistId: wishlistId, wish: data}));
+                reduxDispatch(addWish({wishlistId: wish.wishlistId, wish: wish}));
                 setShowModal(null);
             }
         ).catch((error) => {
@@ -53,39 +27,18 @@ export default function ModalEditWish({showModal, setShowModal, wish, wishlistId
     }
 
 
-    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedId = parseInt(event.target.value, 10);
-        // @ts-ignore
-        const selected = wishlists.wishlists.find((wishlist) => wishlist.id === selectedId);
-        setSelectedWishlist(selected);
-    };
 
     return (
         <>
             {showModal ? (
                 <ModalWish
-                    data={data}
-                    dispatchData={dispatchData}
+                    wishInit = {wish}
+                    wishlistId = {wishlistId}
                     setShowModal={setShowModal}
-                    handleSelectChange={handleSelectChange}
+                    handleSubmit={updateWish}
+                    submitLabel="update_wish"
+                    modalTitle="edit_wish"
                 >
-                    <div
-                        className="flex items-center justify-end p-3 border-t border-solid border-blueGray-200 rounded-b">
-                        <button
-                            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                            type="button"
-                            onClick={() => setShowModal(null)}
-                        >
-                            {t('close')}
-                        </button>
-                        <button
-                            className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                            type="button"
-                            onClick={updateWish}
-                        >
-                            {t('update_wish')}
-                        </button>
-                    </div>
                 </ModalWish>
             ) : <></>}
         </>

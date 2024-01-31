@@ -7,6 +7,7 @@ import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import LanguageSwitcher from "@/components/lang-switcher/LanguageSwitcher";
 import Link from "next/link";
 import {Dialog} from "@headlessui/react";
+import {lusitana} from "@/app/[locale]/ui/fonts";
 
 
 
@@ -38,16 +39,11 @@ const Header = () => {
 
     return (
         <div className="relative inset-x-0 top-0 z-50 ">
-            <nav className="flex items-center justify-between  lg:px-8 bg-gray-700 h-16" aria-label="Global">
+            <nav className="flex items-center justify-between lg:px-8 bg-gray-700 h-16" aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <a href="#" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Wish Magic</span>
-                        {/*<img*/}
-                        {/*    className="h-8 w-auto"*/}
-                        {/*    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"*/}
-                        {/*    alt=""*/}
-                        {/*/>*/}
-                    </a>
+                    <Link href="/" className="-m-1.5 p-1.5">
+                        <span className={`${lusitana.className} md:text-3xl text-white`}>Wish Magic</span>
+                    </Link>
                 </div>
                 <div className="flex lg:hidden">
                     <button
@@ -62,7 +58,7 @@ const Header = () => {
                 <div className="hidden lg:flex lg:gap-x-12">
                     {user && navigation.map((item) => (
                         <a key={item.name} href={item.href}
-                           className="text-white text-xl font-normal font-['Inter']">
+                           className="text-white text-xl font-normal">
                             {item.name}
                         </a>
                     ))}

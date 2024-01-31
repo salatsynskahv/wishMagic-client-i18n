@@ -10,6 +10,7 @@ export async function generateMetadata({ params: { locale } }: any) {
 }
 
 const HomePage = ({ params: { locale } }: any) => {
+    console.log("RELAODING PAGE !!!!!!!!!!")
 
     return (
         <div>

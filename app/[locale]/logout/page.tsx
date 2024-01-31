@@ -6,7 +6,6 @@ import {useAuth} from "@/components/context/AuthContext";
 import {serviceApi} from "@/components/services/api/ServiceApi";
 
 export default function Logout(): React.JSX.Element {
-    const router = useRouter();
     const {getUser} = useAuth();
 
     useLayoutEffect(() => {

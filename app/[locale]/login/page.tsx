@@ -5,6 +5,8 @@ import {serviceApi} from '@/components/services/api/ServiceApi'
 import {parseJwt, getSocialLoginUrl, handleLogError} from '@/components/services/Helpers'
 import Link from "next/link";
 import {useTranslations} from "next-intl";
+import {FcGoogle} from "react-icons/fc";
+import {FaGithub} from "react-icons/fa";
 
 function Login(): React.JSX.Element {
     const Auth = useAuth();
@@ -58,8 +60,8 @@ function Login(): React.JSX.Element {
                 <div className="flex flex-col gap-4 pt-5 w-full">
                     <Link
                         href={getSocialLoginUrl('google')}
-                        className="relative text-center rounded-full px-3 py-3 text-sm leading-6  ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        {t('google')}
+                        className="flex justify-center gap-2  relative text-center rounded-full px-3 py-3 text-sm leading-6  ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        {t('google')} <FcGoogle className="inline-block" size="1.5rem"/>
                     </Link>
                     {/*<Link*/}
                     {/*    href={getSocialLoginUrl('facebook')}*/}
@@ -68,8 +70,8 @@ function Login(): React.JSX.Element {
                     {/*</Link>*/}
                     <Link
                         href={getSocialLoginUrl('github')}
-                        className="relative text-center rounded-full px-3 py-3 text-sm leading-6  ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        {t('github')}
+                        className="flex justify-center gap-2 align-middle relative text-center rounded-full px-3 py-3 text-sm leading-6  ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        {t('github')} <FaGithub className="inline-block" size="1.5rem"/>
                     </Link>
                 </div>
                 <div className="border-b border-gray-500 my-8 w-1/2"></div>

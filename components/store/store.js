@@ -1,5 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 import wishlistsSlice from "@/components/store/slices/wishlistSlice";
+import {wishlistApi} from "./wishlistApi";
+import {setupListeners} from "@reduxjs/toolkit/query";
 // import { getUserWishlists} from "@/components/services/api/WishlistService";
 //
 //
@@ -20,9 +22,15 @@ import wishlistsSlice from "@/components/store/slices/wishlistSlice";
 const store = configureStore({
     reducer: {
         wishlist: wishlistsSlice,
+        [wishlistApi.reducerPath]: wishlistApi.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(wishlistApi.middleware)
+
     // preloadedState: preloadedState(),
 });
+
+setupListeners(store.dispatch);
 
 
 

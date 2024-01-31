@@ -1,24 +1,69 @@
 'use client'
-import React from "react";
+import React, {useEffect, useReducer, useState} from "react";
 import {serviceApi} from "@/components/services/api/ServiceApi";
 import {Wish} from "@/types/Wish";
 import Wishlist from "@/types/Wishlist";
-import {useAppSelector} from "@/lib/hooks";
+import {useAppDispatch, useAppSelector} from "@/lib/hooks";
 import {useTranslations} from "next-intl";
 import WiButton from "@/components/elements/button";
+import {getUserWishlistFetcher} from "@/components/services/api/WishlistService";
+import WiInput from "@/components/elements/input";
+import {inputStyle} from "@/components/StyleConstants";
+import {Simulate} from "react-dom/test-utils";
+import submit = Simulate.submit;
+import {usePathname, useRouter} from "next/navigation";
+import wishlist from "@/types/Wishlist";
 
 type ModalWishProps = {
-    data: Wish,
-    children: any,
-    dispatchData: any,
+    wishInit: Wish | null,
+    wishlistId: string,
+    submitLabel: string
+    modalTitle: string
     setShowModal: any,
-    handleSelectChange: any
+    handleSubmit: any
 }
-export default function ModalWish({data, dispatchData, setShowModal, handleSelectChange, children}: ModalWishProps) {
-    const t = useTranslations('Wishlists');
-    const wishlists = useAppSelector((state: any) => state.wishlist);
 
-    const inputStyle = "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500";
+export default function ModalWish({setShowModal, handleSubmit, submitLabel, modalTitle, wishInit, wishlistId}: ModalWishProps) {
+
+    const t = useTranslations('Wishlists');
+    const pathname = usePathname();
+
+    const [wishlists, setWishlists] = useState(useAppSelector((state: any) => state.wishlist.wishlists));
+    const [link, setLink] = useState<string>();
+
+    const dataReducer = (state: any, action: any) => {
+        if (action.type === "init") {
+            return {...state, ...action.payload};
+        }
+        if (action.type === "input") {
+            return {...state, [action.payload.name]: action.payload.value}
+        }
+    }
+    const [data, dispatchData] = useReducer(dataReducer, wishInit || {});
+
+    useEffect(() => {
+
+        if (wishlists === undefined || wishlists.length === 0) {
+            getUserWishlistFetcher().then(
+                res => {
+                    setWishlists(res.data);
+                }
+            )
+        }
+
+        const match = pathname.match(/\/(\d+)$/);
+        console.log(match);
+
+        dispatchData(
+            {
+                type: "input",
+                payload: {
+                    name: 'wishlistId',
+                    value: wishlistId
+                }
+            });
+
+    }, []);
 
     function submitLink() {
         serviceApi.scrappingFromUrl(data.link).then((result) => {
@@ -30,6 +75,19 @@ export default function ModalWish({data, dispatchData, setShowModal, handleSelec
         })
     }
 
+    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedId = parseInt(event.target.value, 10);
+        dispatchData(
+            {
+                type: "input",
+                payload: {
+                    name: 'wishlistId',
+                    value: selectedId
+                }
+            })
+    };
+
+
     const handleInput = (event: any) => dispatchData(
         {
             type: "input",
@@ -40,6 +98,10 @@ export default function ModalWish({data, dispatchData, setShowModal, handleSelec
         }
     )
 
+    function handleItemSubmit() {
+        console.log(data);
+        handleSubmit(data);
+    }
 
     return (
         <>
@@ -53,7 +115,7 @@ export default function ModalWish({data, dispatchData, setShowModal, handleSelec
                         <div
                             className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                             <h3 className="text-3xl font-semibold">
-                                {t('edit_wish')}
+                                {t(modalTitle)}
                             </h3>
                             <button
                                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -89,28 +151,30 @@ export default function ModalWish({data, dispatchData, setShowModal, handleSelec
                             data &&
                             <div className="flex flex-col mx-10 my-6">
                                 <label>Select Wishlist:</label>
-                                <select onChange={handleSelectChange}>
-                                    {wishlists.wishlists.map((wishlist: Wishlist) => (
-                                        <option key={wishlist.id} value={wishlist.id}>
-                                            {wishlist.title}
-                                        </option>
-                                    ))}
+                                <select
+                                    name="wishlistId"
+                                    onChange={handleSelectChange}
+                                >
+                                    {
+                                        wishlists && wishlists.map((wishlist: Wishlist) => (
+                                            <option key={wishlist.id} value={wishlist.id}>
+                                                {wishlist.title}
+                                            </option>
+                                        ))}
                                 </select>
                                 <label htmlFor="title">{t('wish_name')}</label>
-                                <input
-                                    className={inputStyle}
+                                <WiInput
                                     type="text"
                                     name="name"
                                     value={data.name}
-                                    onChange={handleInput}
+                                    handleChange={handleInput}
                                 />
                                 <label htmlFor="title">{t('price')}</label>
-                                <input
-                                    className={inputStyle}
+                                <WiInput
                                     type="text"
                                     name="price"
                                     value={data.price}
-                                    onChange={handleInput}
+                                    handleChange={handleInput}
                                 />
                                 <label> {t('comment')}</label>
                                 <textarea
@@ -121,7 +185,23 @@ export default function ModalWish({data, dispatchData, setShowModal, handleSelec
                                 />
                             </div>
                         }
-                        {children}
+                        <div
+                            className="flex items-center justify-end p-3 border-t border-solid border-blueGray-200 rounded-b">
+                            <button
+                                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={() => setShowModal(null)}
+                            >
+                                {t('close')}
+                            </button>
+                            <button
+                                className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={handleItemSubmit}
+                            >
+                                {t(submitLabel)}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

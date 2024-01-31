@@ -3,6 +3,7 @@ import {NextIntlClientProvider, useMessages} from 'next-intl';
 import StoreProvider from "@/components/context/StoreProvider";
 import '../globals.css'
 import Header from "@/components/header/header";
+import {inter} from "@/app/[locale]/ui/fonts";
 // import { PageParamsType } from '@/types';
 
 const RootLayout = ({
@@ -13,10 +14,11 @@ const RootLayout = ({
     params: any;
 }) => {
     const messages = useMessages();
+    console.log("RELAODING !!!!!!!!!!")
 
     return (
         <html lang={locale}>
-        <body>
+        <body className={`${inter.className} antialiased`}>
         <AuthProvider>
             <StoreProvider>
                 <NextIntlClientProvider

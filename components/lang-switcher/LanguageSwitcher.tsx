@@ -1,8 +1,9 @@
 'use client';
-import React, { FC } from 'react';
-import { useLocale } from 'next-intl';
+import React, {FC} from 'react';
+import {useLocale} from 'next-intl';
 import ISO6391 from 'iso-639-1';
-import { locales, usePathname, useRouter } from '@/navigation';
+import {locales, usePathname, useRouter} from '@/navigation';
+
 
 const LanguageSwitcher: FC = () => {
     const locale = useLocale();
@@ -11,20 +12,26 @@ const LanguageSwitcher: FC = () => {
     console.log(locales);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        router.push(pathName, { locale: e.target.value });
+        router.push(pathName, {locale: e.target.value});
     };
 
-    return (
-        <div className="mx-10">
-            <select className="rounded-md" value={locale} onChange={handleChange}>
-                {locales.map((lang) => (
-                    <option key={lang} value={lang}>
-                        {lang}
-                    </option>
-                ))}
-            </select>
-        </div>
+    const langMap: { [key: string]: string } = {
+        'ua': "🇺🇦",
+        'en': "🇬🇧"
+    }
 
+    return (
+        <select
+            className="inline-flex rounded-xl py-0.5  align-middle pl-[8px] pr-[10px] mr-10"
+            value={locale}
+            onChange={handleChange}>
+            {
+                locales.map((lang) => (
+                    <option className="w-1 " key={lang} value={lang}>
+                        {langMap[lang]}
+                    </option>))
+            }
+        </select>
     );
 };
 

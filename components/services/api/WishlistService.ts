@@ -1,15 +1,23 @@
-import {apiInstance, bearerAuth, bearerAuthWithUser} from "@/components/services/api/AxiosInstance";
+import {apiInstance, bearerAuth} from "@/components/services/api/AxiosInstance";
 import {Wish} from "@/types/Wish";
 import Wishlist from "@/types/Wishlist";
 
-export const createWishRequest = async (wishItem : Wish) => {
-    const result = await apiInstance.post('/api/wishItem', wishItem,{
+export const createWishRequest = (wishItem : Wish) => {
+    return  apiInstance.post('/api/wishItem', wishItem,{
         headers: {
             'Content-type': 'application/json',
             'Authorization': bearerAuth()
         }
     });
-    console.log(result);
+}
+
+export const createWishlistRequest = async (wishlist : Wishlist) => {
+    return await apiInstance.post('/api/wishlist', wishlist, {
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': bearerAuth()
+        }
+    });
 }
 
 export const updateWishRequest = async (wishItem : Wish) => {
