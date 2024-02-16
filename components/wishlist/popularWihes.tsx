@@ -23,8 +23,8 @@ function PopularWishes() {
                         <WishItemCardDemo wishItem={item}/>))
                 }
             </div>
-
-        </div>)
+        </div>
+    )
 
 }
 

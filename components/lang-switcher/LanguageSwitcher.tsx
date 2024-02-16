@@ -9,7 +9,6 @@ const LanguageSwitcher: FC = () => {
     const locale = useLocale();
     const router = useRouter();
     const pathName = usePathname();
-    console.log(locales);
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         router.push(pathName, {locale: e.target.value});

@@ -1,19 +1,14 @@
-'use client'
-import React, {useEffect, useState} from 'react'
-import {Dialog} from '@headlessui/react'
-import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
+import React from 'react'
 import Link from 'next/link';
-import {useAuth} from "@/components/context/AuthContext";
-import {serviceApi} from "@/components/services/api/ServiceApi";
-import {useLocale, useTranslations} from "next-intl";
-import LanguageSwitcher from "@/components/lang-switcher/LanguageSwitcher";
+import {useLocale} from "next-intl";
+import {getUser} from "@/app/[locale]/lib/actions";
+import {getTranslations} from "next-intl/server";
 
-
-export default function HeroSection() {
-    const {user} = useAuth();
+export default async function HeroSection() {
+    const user = await getUser();
+    console.log("user: " + user);
     const locale = useLocale();
-    const t = useTranslations('HeroSection');
-    console.log("RELAODING HeroSection !!!!!!!!!!")
+    const t = await getTranslations('HeroSection');
     return (
         <>
             <div className="flex bg-cover bg-no-repeat bg-center flex-grow overflow-y-auto">

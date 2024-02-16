@@ -1,36 +1,27 @@
 'use client'
-import React, {useEffect, useReducer, useState} from "react";
-import {serviceApi} from "@/components/services/api/ServiceApi";
+import React, {Dispatch, SetStateAction, useEffect, useReducer} from "react";
 import {Wish} from "@/types/Wish";
-import Wishlist from "@/types/Wishlist";
-import {useAppDispatch, useAppSelector} from "@/lib/hooks";
-import {useTranslations} from "next-intl";
-import WiButton from "@/components/elements/button";
-import {getUserWishlistFetcher} from "@/components/services/api/WishlistService";
-import WiInput from "@/components/elements/input";
-import {inputStyle} from "@/components/StyleConstants";
-import {Simulate} from "react-dom/test-utils";
-import submit = Simulate.submit;
 import {usePathname, useRouter} from "next/navigation";
-import wishlist from "@/types/Wishlist";
+import Wishlist from "@/types/Wishlist";
+import {useTranslations} from "next-intl";
+import {serviceApi} from "@/components/services/api/ServiceApi";
+import {inputStyle} from "@/components/StyleConstants";
+import WiButton from "@/components/elements/button";
+import WiInput from "@/components/elements/input";
 
-type ModalWishProps = {
-    wishInit: Wish | null,
+
+type ModalEditWishParams = {
+    showModal: boolean,
+    setShowModal: React.Dispatch<React.SetStateAction<Wish | null>>,
+    wish: Wish | null,
     wishlistId: number,
-    submitLabel: string
-    modalTitle: string
-    setShowModal: any,
-    handleSubmit: any
-}
+    setWishlist: Dispatch<SetStateAction<Wishlist>>
+};
+export default function ModalEditWish({showModal, setShowModal, wish ,wishlistId, setWishlist}: ModalEditWishParams) {
 
-export default function ModalWish({setShowModal, handleSubmit, submitLabel, modalTitle, wishInit, wishlistId}: ModalWishProps) {
-
+    console.log(wish);
     const t = useTranslations('Wishlists');
     const pathname = usePathname();
-
-    const [wishlists, setWishlists] = useState(useAppSelector((state: any) => state.wishlist.wishlists));
-    const [link, setLink] = useState<string>();
-
     const dataReducer = (state: any, action: any) => {
         if (action.type === "init") {
             return {...state, ...action.payload};
@@ -39,21 +30,39 @@ export default function ModalWish({setShowModal, handleSubmit, submitLabel, moda
             return {...state, [action.payload.name]: action.payload.value}
         }
     }
-    const [data, dispatchData] = useReducer(dataReducer, wishInit || {});
+    const [data, dispatchData] = useReducer(dataReducer, wish);
+
+    const handleSubmit = async (e: any, wish: any) => {
+        e.preventDefault();
+        try {
+            fetch('/api/wish', {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({wish}),
+            }).then(
+                (res) => {
+                    setWishlist(prevState => (
+                        {
+                            ...prevState,
+                            wishes: prevState.wishes.map(item => {
+                                    if (item.id === data.id) {
+                                        return {...data};
+                                    }
+                                    return item;
+                                }
+                            )
+                        }));
+                    setShowModal(null);
+                })
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     useEffect(() => {
-
-        if (wishlists === undefined || wishlists.length === 0) {
-            getUserWishlistFetcher().then(
-                res => {
-                    setWishlists(res.data);
-                }
-            )
-        }
-
         const match = pathname.match(/\/(\d+)$/);
-        console.log(match);
-
         dispatchData(
             {
                 type: "input",
@@ -71,7 +80,6 @@ export default function ModalWish({setShowModal, handleSubmit, submitLabel, moda
                 type: "init",
                 payload: result.data
             });
-            console.log(result.data);
         })
     }
 
@@ -86,8 +94,6 @@ export default function ModalWish({setShowModal, handleSubmit, submitLabel, moda
                 }
             })
     };
-
-
     const handleInput = (event: any) => dispatchData(
         {
             type: "input",
@@ -98,13 +104,10 @@ export default function ModalWish({setShowModal, handleSubmit, submitLabel, moda
         }
     )
 
-    function handleItemSubmit() {
-        console.log(data);
-        handleSubmit(data);
-    }
 
     return (
         <>
+            {showModal ? ( <>
             <div
                 className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                 <div className="relative w-auto my-6 mx-auto max-w-3xl">
@@ -115,7 +118,7 @@ export default function ModalWish({setShowModal, handleSubmit, submitLabel, moda
                         <div
                             className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                             <h3 className="text-3xl font-semibold">
-                                {t(modalTitle)}
+                                {t('edit_')}
                             </h3>
                             <button
                                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -155,12 +158,12 @@ export default function ModalWish({setShowModal, handleSubmit, submitLabel, moda
                                     name="wishlistId"
                                     onChange={handleSelectChange}
                                 >
-                                    {
-                                        wishlists && wishlists.map((wishlist: Wishlist) => (
-                                            <option key={wishlist.id} value={wishlist.id}>
-                                                {wishlist.title}
-                                            </option>
-                                        ))}
+                                    {/*{*/}
+                                    {/*    wishlists && wishlists.map((wishlist: Wishlist) => (*/}
+                                    {/*        <option key={wishlist.id} value={wishlist.id}>*/}
+                                    {/*            {wishlist.title}*/}
+                                    {/*        </option>*/}
+                                    {/*    ))}*/}
                                 </select>
                                 <label htmlFor="title">{t('wish_name')}</label>
                                 <WiInput
@@ -194,18 +197,20 @@ export default function ModalWish({setShowModal, handleSubmit, submitLabel, moda
                             >
                                 {t('close')}
                             </button>
-                            <button
-                                className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={handleItemSubmit}
-                            >
-                                {t(submitLabel)}
-                            </button>
+                            <form>
+                                <button
+                                    onClick={(e) => handleSubmit(e, data)}
+                                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                >
+                                    Edit
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+            <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> </>) : <></> }
         </>
     );
+
 }

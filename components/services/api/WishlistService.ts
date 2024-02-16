@@ -20,14 +20,13 @@ export const createWishlistRequest = async (wishlist : any) => {
     });
 }
 
-export const updateWishRequest = async (wishItem : Wish) => {
-    const result = await apiInstance.patch('/api/wishItem', wishItem,{
+export const updateWishRequest =  (wishItem : Wish) => {
+   return apiInstance.patch('/api/wishItem', wishItem,{
         headers: {
             'Content-type': 'application/json',
             'Authorization': bearerAuth()
         }
     });
-    console.log(result);
 }
 
 export const getUserWishlistFetcher =  () =>

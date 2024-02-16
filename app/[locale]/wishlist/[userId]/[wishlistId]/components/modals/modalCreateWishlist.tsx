@@ -5,20 +5,18 @@ import {useTranslations} from "next-intl";
 import WiInput from "@/components/elements/input";
 import createWishlist from "@/components/wishlist/createWishlist";
 import {createWishlistRequest} from "@/components/services/api/WishlistService";
-import {useAppDispatch} from "@/lib/hooks";
-import {add} from "@/components/store/slices/wishlistSlice";
+
 
 
 function ModalCreateWishlist({showModal, setModalShow}: { showModal: boolean, setModalShow: any }) {
     const t = useTranslations('Wishlists');
-    const reduxDispatch = useAppDispatch();
+
 
     const [wishlistTitle, setWishlistTitle] = useState<string>("");
     const createWishlistHandler = () => {
         const wishlistDto = {title: wishlistTitle}
         createWishlistRequest(wishlistDto).then(
             res => {
-                reduxDispatch(add({wishlist: res.data}));
                 setWishlistTitle("");
                 setModalShow(false);
             }
@@ -42,7 +40,8 @@ function ModalCreateWishlist({showModal, setModalShow}: { showModal: boolean, se
                     {/*body*/}
                     <div className="relative p-6 flex-auto">
                         <p className="my-1 text-blueGray-500 text-l font-medium leading-relaxed">
-                            {t('wishlist_name')}
+                            {t(
+                                'wishlist_name')}
                         </p>
                         <WiInput
                             value={wishlistTitle}

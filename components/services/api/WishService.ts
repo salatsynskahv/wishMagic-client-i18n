@@ -3,7 +3,7 @@ import {AxiosResponse} from "axios";
 
 export const getAllWishesByWishlistId = async (wishlistId: number): Promise<AxiosResponse<any>> => {
 
-    const result = await apiInstance.get("/api/wishItem/byWishlist", {
+    const result = await apiInstance.get("/api/wish/byWishlist", {
         params: {wishlistId},
         headers: {
             'Content-type': 'application/json',
@@ -13,7 +13,7 @@ export const getAllWishesByWishlistId = async (wishlistId: number): Promise<Axio
     return result;
 }
 
-export const likeWishRequest = async (wishId: number| undefined, userId: string): Promise<AxiosResponse<any>> => {
+export const likeWishRequest = async (wishId: number | undefined, userId: string): Promise<AxiosResponse<any>> => {
 
     return await apiInstance.post("/api/likes",
         {wishId, userId},
@@ -35,5 +35,15 @@ export const disLikeWishRequest = async (likeId: number): Promise<AxiosResponse<
             }
         }
     );
+}
+
+export const deleteWishRequest = async (wishId: number): Promise<AxiosResponse> => {
+    return await apiInstance.delete(`/api/wish/${wishId}`,
+        {
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': bearerAuth()
+            }
+        });
 }
 

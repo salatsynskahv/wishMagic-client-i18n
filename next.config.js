@@ -4,6 +4,14 @@ const withNextIntl = require('next-intl/plugin')();
 
 const nextConfig = {
     reactStrictMode: true,
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: '**',
+            },
+        ],
+    },
 };
 
 module.exports = withNextIntl(nextConfig);

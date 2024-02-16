@@ -26,7 +26,6 @@ function AuthProvider({children}) {
             if (!storedUser) {
                 return false;
             }
-            console.log(storedUser);
             storedUser = JSON.parse(storedUser)
 
             // if user has token expired, logout user

@@ -87,3 +87,26 @@ select {
   text-indent: 1px;
   text-overflow: '';
 }
+
+
+.wish-container {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.wish {
+  max-width: calc(20% - 20px);
+  min-width: calc(20% - 20px);
+  height: 30vw;
+  margin-block: 10px ;
+  margin-inline: 10px;
+  /*border: 1px solid #d7d3d3;*/
+  border-radius: 3%;
+  padding: 0;
+  background-color: aliceblue;
+  -webkit-box-shadow: 0px 0px 10px 0px  #c8cfd5;
+  -moz-box-shadow: 0px 0px 10px 0px  #c8cfd5;
+  box-shadow: 0px 0px 20px 0px #c8cfd5;
+}
