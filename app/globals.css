@@ -110,3 +110,12 @@ select {
   -moz-box-shadow: 0px 0px 10px 0px  #c8cfd5;
   box-shadow: 0px 0px 20px 0px #c8cfd5;
 }
+
+
+.three-dots-icon {
+  transition: transform 0.2s ease;
+}
+
+.three-dots-icon:hover {
+  transform: scale(1.5);
+}

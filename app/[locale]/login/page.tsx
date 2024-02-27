@@ -1,7 +1,5 @@
 'use client'
-import React, {FormEvent, useState} from 'react'
-import {useAuth} from '@/components/context/AuthContext'
-import {serviceApi} from '@/components/services/api/ServiceApi'
+import React from 'react'
 import {parseJwt, getSocialLoginUrl, handleLogError} from '@/components/services/Helpers'
 import Link from "next/link";
 import {useTranslations} from "next-intl";
@@ -9,39 +7,11 @@ import {FcGoogle} from "react-icons/fc";
 import {FaGithub} from "react-icons/fa";
 
 function Login(): React.JSX.Element {
-    const Auth = useAuth();
-    const isLoggedIn = Auth.userIsAuthenticated()
 
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [isError, setIsError] = useState(false);
 
     const t = useTranslations('Login');
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
 
-        if (!(username && password)) {
-            setIsError(true)
-            return
-        }
-
-        try {
-            const response= await serviceApi.authenticate(username, password)
-            const {accessToken} = response.data
-            const data = parseJwt(accessToken)
-            const authenticatedUser = {data, accessToken}
-
-            Auth.userLogin(authenticatedUser)
-
-            setUsername('')
-            setPassword('')
-            setIsError(false)
-        } catch (error) {
-            handleLogError(error)
-            setIsError(true)
-        }
-    }
 
     // if (isLoggedIn) {
     //     return <Navigate to='/'/>

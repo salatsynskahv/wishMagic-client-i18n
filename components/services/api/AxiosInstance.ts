@@ -2,7 +2,6 @@
 import {config} from "@/components/Constants";
 import {parseJwt} from "@/components/services/Helpers";
 import axios, {AxiosInstance} from "axios";
-import {useAuth} from "@/components/context/AuthContext";
 
 export const apiInstance: AxiosInstance = axios.create({
     baseURL: config.url.API_BASE_URL

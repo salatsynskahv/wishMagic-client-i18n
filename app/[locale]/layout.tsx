@@ -1,4 +1,4 @@
-import { AuthProvider } from '@/components/context/AuthContext';
+
 import {NextIntlClientProvider, useMessages} from 'next-intl';
 import '../globals.css'
 import Header from "@/components/header/header";
@@ -19,7 +19,7 @@ const RootLayout = ({
     return (
         <html lang={locale}>
         <body className={`${inter.className} antialiased`}>
-        <AuthProvider>
+
                 <NextIntlClientProvider
                     locale={locale}
                     messages={messages}
@@ -27,7 +27,6 @@ const RootLayout = ({
                     <Header/>
                     {children}
                 </NextIntlClientProvider>
-        </AuthProvider>
         </body>
         </html>
     );

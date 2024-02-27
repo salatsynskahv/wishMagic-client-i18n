@@ -12,11 +12,15 @@ export function CreateWishlistButton() {
     return (
         <>
             <button
-                className={"px-6 py-3  rounded-t-2xl bg-white bg-opacity-50 justify-center items-center  inline-flex"}
-                onClick={() => setShowCreateWishlistModal(true)}>
+                className="flex items-center gap-1 bg-emerald-500 text-white active:bg-emerald-600 px-4 py-2 rounded-xl
+                shadow hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
+            >
                 {t("new_wishlist")}
                 <FiPlusCircle/>
             </button>
-            <ModalCreateWishlist showModal={showCreateWishlistModal} setModalShow={setShowCreateWishlistModal}/>
+            <ModalCreateWishlist
+                showModal={showCreateWishlistModal}
+                setModalShow={setShowCreateWishlistModal}
+            />
         </>)
 }

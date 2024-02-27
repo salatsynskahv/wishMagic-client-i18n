@@ -3,29 +3,38 @@ import Wishlist from "@/types/Wishlist";
 import React, {ChangeEvent, useState} from "react";
 import {useTranslations} from "next-intl";
 import WiInput from "@/components/elements/input";
-import createWishlist from "@/components/wishlist/createWishlist";
 import {createWishlistRequest} from "@/components/services/api/WishlistService";
-
+import {useRouter} from "next/navigation";
 
 
 function ModalCreateWishlist({showModal, setModalShow}: { showModal: boolean, setModalShow: any }) {
+
+    const router = useRouter();
     const t = useTranslations('Wishlists');
 
-
     const [wishlistTitle, setWishlistTitle] = useState<string>("");
-    const createWishlistHandler = () => {
+
+
+    const handleCreateWishlist = () => {
         const wishlistDto = {title: wishlistTitle}
-        createWishlistRequest(wishlistDto).then(
-            res => {
-                setWishlistTitle("");
-                setModalShow(false);
-            }
+        fetch('/api/wishlist', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(wishlistDto)
+        }).then(
+            (res => {
+                 router.push("/wishlist");
+            })
         )
     }
 
+
     return (
         showModal &&
-        <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+        <div
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
                 {/*content*/}
                 <div
@@ -52,13 +61,13 @@ function ModalCreateWishlist({showModal, setModalShow}: { showModal: boolean, se
                         <div className="w-full flex justify-center">
                             <WiButton
                                 className="my-6 bg-green-50"
-                                onClickHandler={createWishlistHandler}>
+                                onClickHandler={handleCreateWishlist}>
                                 {t('create')}
                             </WiButton>
                             <WiButton
                                 className="my-6 bg-red-50"
                                 onClickHandler={() => setModalShow(false)}>
-                                    {t('close')}
+                                {t('close')}
                             </WiButton>
                         </div>
                     </div>

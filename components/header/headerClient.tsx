@@ -1,6 +1,6 @@
 'use client';
 import React, {useState} from "react";
-import {useLocale} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import {Bars3Icon, XMarkIcon} from "@heroicons/react/24/outline";
 import LanguageSwitcher from "@/components/lang-switcher/LanguageSwitcher";
 import Link from "next/link";
@@ -17,6 +17,7 @@ const HeaderClient = ( {user, children}: { user: User, children: React.ReactNode
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const locale = useLocale();
     const router = useRouter();
+    const t = useTranslations('Wishlists');
 
     const redirectToWishlist = () => {
         router.push('/wishlist');
@@ -46,7 +47,7 @@ const HeaderClient = ( {user, children}: { user: User, children: React.ReactNode
                             <button
                                 onClick={redirectToWishlist}
                                 className="border-none text-white text-xl font-normal">
-                                Wishlist
+                                {t('my_wishlists')}
                             </button>
                         </>
                     }
