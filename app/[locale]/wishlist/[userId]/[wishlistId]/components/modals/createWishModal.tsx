@@ -17,7 +17,7 @@ type ModalCreateWishParams = {
 export default function CreateWishModal({showModal, setShowModal, setWishlist, wishlistId}: ModalCreateWishParams) {
     const t = useTranslations('Wishlists');
     const pathname = usePathname();
-    const dataReducer = (state: any, action: any) => {
+    const dataReducer = (state: Wish, action: any) => {
         if (action.type === "init") {
             return {...state, ...action.payload};
         }
@@ -31,6 +31,7 @@ export default function CreateWishModal({showModal, setShowModal, setWishlist, w
 
     const handleSubmit = async (e: any, wish: any) => {
         e.preventDefault();
+        console.log(wish);
         try {
             fetch('/api/wish', {
                 method: 'POST',
@@ -58,12 +59,14 @@ export default function CreateWishModal({showModal, setShowModal, setWishlist, w
     }
 
     function submitLink() {
-        serviceApi.scrappingFromUrl(data.link).then((result) => {
-            dispatchData({
-                type: "init",
-                payload: result.data
-            });
-        })
+        serviceApi.scrappingFromUrl(data.link).then(
+            (result) => {
+                console.log(result.data);
+                dispatchData({
+                    type: "init",
+                    payload: result.data
+                });
+            })
     }
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

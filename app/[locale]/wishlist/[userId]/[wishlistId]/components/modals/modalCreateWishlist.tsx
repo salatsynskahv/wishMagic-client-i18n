@@ -1,4 +1,4 @@
-import WiButton from "@/components/elements/button";
+import WiButton from "@/components/elements/wiButton";
 import Wishlist from "@/types/Wishlist";
 import React, {ChangeEvent, useState} from "react";
 import {useTranslations} from "next-intl";
@@ -58,7 +58,7 @@ function ModalCreateWishlist({showModal, setModalShow}: { showModal: boolean, se
                                 setWishlistTitle(e.target.value)
                             }}
                         />
-                        <div className="w-full flex justify-center">
+                        <div className="w-full flex justify-center gap-2">
                             <WiButton
                                 className="my-6 bg-green-50"
                                 onClickHandler={handleCreateWishlist}>

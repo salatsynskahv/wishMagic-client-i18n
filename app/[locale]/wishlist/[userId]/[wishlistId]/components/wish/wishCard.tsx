@@ -50,7 +50,7 @@ const WishCard = ({userId, wishItem, selectWish, setWishlist}: {
     }
 
     function formatName(name: string): string {
-        if (name.length > 30) {
+        if (name && name.length > 30) {
             return name.split(" ").slice(0, 8).join(" ") + "...";
         }
         return name;
@@ -80,11 +80,11 @@ const WishCard = ({userId, wishItem, selectWish, setWishlist}: {
                 </div>
                 {
                     <Image
-                        className="w-[100%] h-[60%]"
+                        className="w-[100%] h-[60%] bg-gray-100"
                         width={200}
                         height={300}
                         style={{objectFit: "cover"}}
-                        src={wishItem.imageUrl || 'https://source.unsplash.com/a-black-and-white-photo-of-a-flower-kW0swgPt298'}
+                        src={wishItem.imageUrl || 'https://source.unsplash.com/a-close-up-of-a-pink-and-white-flower-uRkGt4cXi6M'}
                         alt="image of wish">
 
                     </Image>
@@ -101,6 +101,14 @@ const WishCard = ({userId, wishItem, selectWish, setWishlist}: {
                                     <FaHeart onClick={handleLike}/>} </div>
                         </div>
 
+                    </div>
+                    <div className="flex items-end justify-end w-full">
+                        <a href={wishItem.link}
+                           target="_blank"
+                           className="text-sm text-gray-500"
+                        >
+                            {t('buy_here')}
+                        </a>
                     </div>
                     <div className="justify-end flex">
                         <div

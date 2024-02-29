@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from "react";
-import WiButton from "@/components/elements/button";
+import WiButton from "@/components/elements/wiButton";
 
 export default function DeleteWishModal({wishId, setShowDeleteCardModal, deleteFromState}: {
     wishId: number

@@ -37,11 +37,16 @@
     "comment": "Коментар",
     "create_wishlist": "Створити Вішліст",
     "create_wish": "Створити Бажання",
+    "buy_here": "Купити тут",
     "wishlist_name": "Назва Вішліста"
   },
   "Login": {
     "login_title": "Логін",
     "google": "Продовжити з Google",
     "github": "Продовжити з GitHub"
+  },
+  "Error": {
+    "return_to_main": "На головну",
+    "smth_went_wrong": "Щось пішло не так"
   }
 }
